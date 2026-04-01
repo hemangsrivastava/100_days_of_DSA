@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int isMinHeap(int arr[], int n) {
+    // Only check non-leaf nodes
+    for (int i = 0; i <= (n - 2) / 2; i++) {
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        // Check left child
+        if (arr[i] > arr[left])
+            return 0;
+
+        // Check right child (if exists)
+        if (right < n && arr[i] > arr[right])
+            return 0;
+    }
+    return 1;
+}
+
+int main() {
+    int n;
+    scanf("%d", &n);
+
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    if (isMinHeap(arr, n))
+        printf("YES\n");
+    else
+        printf("NO\n");
+
+    return 0;
+}
